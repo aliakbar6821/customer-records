@@ -60,7 +60,6 @@
     outline: none;
     margin-bottom: 14px;
     transition: border-color 0.2s;
-    -webkit-text-security: disc;
   }
   .login-box input:focus { border-color: #7eb8f7; }
   .login-box input::placeholder {
@@ -364,7 +363,7 @@
   <div class="header">
     <div>
       <h1>&#128188; Customer Records</h1>
-      <div class="updated">Updated: 2026-04-11 03:27:22 PM</div>
+      <div class="updated">Updated: 2026-04-11 03:47:27 PM</div>
       <div class="mode-badge" id="modeBadge"></div>
     </div>
     <div class="btn-group">
@@ -413,19 +412,18 @@
      ══════════════════════════════════════════ -->
 <script>
 const MASTER_HASH = "7c180e3e3bee93dde4c28a4999b4cc3604ee53524c3b245485d41ac36d478c82";
-const records     = [{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno BG6","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","stat":"P"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","stat":"P"}];
+const records     = [{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno BG6","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","stat":"P"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"2000","tot":"3000","stat":"P"}];
 
 // ════════════════════════════════════════════
 //  STATE  (memory only — lost on any navigation)
 // ════════════════════════════════════════════
 let isLoggedIn  = false;
-let currentMode = null; // 'master' | 'customer'
+let currentMode = null;
 
 // ── Clear everything on page load ────────────
 window.addEventListener('load', function () {
     clearInput();
     showLoginScreen();
-    // Remove readonly after a short delay to defeat autofill timing
     setTimeout(function () {
         const inp = document.getElementById('codeInput');
         inp.removeAttribute('readonly');
@@ -433,14 +431,14 @@ window.addEventListener('load', function () {
     }, 150);
 });
 
-// ── Log out when tab is hidden (switch tab / minimise / lock) ────────────
+// ── Log out when tab hidden ───────────────────
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden' && isLoggedIn) {
         forceLogout();
     }
 });
 
-// ── Wipe on any unload (close, refresh, back) ────────────────────────────
+// ── Wipe on unload ────────────────────────────
 window.addEventListener('beforeunload', function () {
     forceLogout();
     clearInput();
@@ -494,7 +492,6 @@ function phoneHtml(p) {
     return escHtml(p);
 }
 
-// SHA-256 via Web Crypto API
 async function sha256(msg) {
     const buf = await crypto.subtle.digest(
         'SHA-256',
@@ -537,7 +534,6 @@ function doLogout() {
     }, 80);
 }
 
-// Refresh = logout first, then hard reload so data is fresh
 function doRefresh() {
     forceLogout();
     location.reload();
@@ -552,7 +548,6 @@ async function doLogin() {
     const errEl = document.getElementById('loginError');
     const raw   = inp.value.trim();
 
-    // Always clear the field right away so nothing lingers in the DOM
     inp.value = '';
 
     if (!raw) {
@@ -664,13 +659,13 @@ function renderCustomerCard(r) {
         '  <h3>Device Receipt</h3>' +
         '</div>' +
         cardRow('Code',    '<span class="code">' + escHtml(r.code) + '</span>') +
-        cardRow('Date',    escHtml(r.date))   +
-        cardRow('Name',    escHtml(r.name))   +
-        cardRow('Phone',   phoneHtml(r.phone))+
-        cardRow('Model',   escHtml(r.model))  +
-        cardRow('Issue',   escHtml(r.issue))  +
-        cardRow('Advance', amountHtml(r.adv)) +
-        cardRow('Total',   amountHtml(r.tot)) +
+        cardRow('Date',    escHtml(r.date))    +
+        cardRow('Name',    escHtml(r.name))    +
+        cardRow('Phone',   phoneHtml(r.phone)) +
+        cardRow('Model',   escHtml(r.model))   +
+        cardRow('Issue',   escHtml(r.issue))   +
+        cardRow('Advance', amountHtml(r.adv))  +
+        cardRow('Total',   amountHtml(r.tot))  +
         cardRow('Status',
             '<span class="' + statClass + '">' +
             statusText(r.stat) + '</span>');
