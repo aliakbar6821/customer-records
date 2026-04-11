@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<title>Customer Records</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f0f;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    padding: 16px;
+  }
+  .header {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .header h1 {
+    font-size: 18px;
+    color: #7eb8f7;
+    letter-spacing: 1px;
+  }
+  .header .updated {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .refresh-btn {
+    background: #1e3a5f;
+    color: #7eb8f7;
+    border: 1px solid #2a5a8f;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .refresh-btn:active {
+    background: #2a4a6f;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #2a2a2a;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    font-size: 13px;
+  }
+  thead tr {
+    background: #1a1a2e;
+    color: #7eb8f7;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  thead th {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2a4a;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid #1e1e1e;
+    transition: background 0.15s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #1a1a1a; }
+  tbody td {
+    padding: 11px 14px;
+    vertical-align: middle;
+  }
+  .code {
+    font-family: monospace;
+    font-size: 13px;
+    color: #f0a500;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .date  { color: #888; font-size: 12px; white-space: nowrap; }
+  .name  { color: #e0e0e0; font-weight: 500; }
+  .phone { color: #aaa; font-size: 12px; }
+  .model { color: #ccc; }
+  .issue { color: #bbb; }
+  .amount {
+    font-family: monospace;
+    color: #7eb8f7;
+  }
+  .partner-badge {
+    background: #1a3a1a;
+    color: #4caf50;
+    border: 1px solid #2a5a2a;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .status-pending {
+    background: #3a2a00;
+    color: #f0a500;
+    border: 1px solid #5a4000;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .status-done {
+    background: #0a2a0a;
+    color: #4caf50;
+    border: 1px solid #1a4a1a;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .status-returned {
+    background: #1a1a3a;
+    color: #7eb8f7;
+    border: 1px solid #2a2a5a;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .empty {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+    font-size: 14px;
+  }
+  .na { color: #555; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>&#128188; Customer Records</h1>
+    <div class="updated">Updated: 2026-04-11 01:45:41 PM</div>
+  </div>
+  <a class="refresh-btn" href="javascript:location.reload()">&#8635; Refresh</a>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Code</th>
+  <th>Date &amp; Time</th>
+  <th>Name</th>
+  <th>Phone</th>
+  <th>Model</th>
+  <th>Issue</th>
+  <th>Advance</th>
+  <th>Total</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="code">J2C8Q</span></td>
+  <td><span class="date">2026-04-11 12:18 PM</span></td>
+  <td><span class="name">murtaza</span></td>
+  <td><span class="phone"><span class='na'>N/A</span></span></td>
+  <td><span class="model">vivo</span></td>
+  <td><span class="issue">batt+backcover</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='status-pending'>Pending</span></td>
+</tr>
+<tr>
+  <td><span class="code">W0K6B</span></td>
+  <td><span class="date">2026-04-11 12:19 PM</span></td>
+  <td><span class="name">murtaza</span></td>
+  <td><span class="phone"><span class='na'>N/A</span></span></td>
+  <td><span class="model">infinix</span></td>
+  <td><span class="issue">panel</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='status-pending'>Pending</span></td>
+</tr>
+<tr>
+  <td><span class="code">X4K7T</span></td>
+  <td><span class="date">2026-04-11 12:26 PM</span></td>
+  <td><span class="name">murtaza</span></td>
+  <td><span class="phone"><span class='na'>N/A</span></span></td>
+  <td><span class="model">vivo</span></td>
+  <td><span class="issue">bt&blackcover</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='status-pending'>Pending</span></td>
+</tr>
+<tr>
+  <td><span class="code">M7T4Q</span></td>
+  <td><span class="date">2026-04-11 01:44 PM</span></td>
+  <td><span class="name">murtaza</span></td>
+  <td><span class="phone"><span class='na'>N/A</span></span></td>
+  <td><span class="model">vivo</span></td>
+  <td><span class="issue">bat+backcover</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='partner-badge'>PARTNER</span></td>
+  <td><span class='status-pending'>Pending</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
