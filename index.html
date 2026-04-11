@@ -9,7 +9,6 @@
 <title>Customer Records</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: #0f0f0f;
     color: #e0e0e0;
@@ -18,7 +17,7 @@
     min-height: 100vh;
   }
 
-  /* ══ LOGIN SCREEN ══════════════════════════ */
+  /* ══ LOGIN ══════════════════════════════════ */
   .login-container {
     display: flex;
     justify-content: center;
@@ -99,9 +98,8 @@
     line-height: 1.7;
   }
 
-  /* ══ DASHBOARD ═════════════════════════════ */
+  /* ══ DASHBOARD ══════════════════════════════ */
   .dashboard { display: none; }
-
   .header {
     background: #1a1a2e;
     border: 1px solid #2a2a4a;
@@ -133,21 +131,10 @@
     font-weight: bold;
     letter-spacing: 0.5px;
   }
-  .mode-master {
-    background: #0a2a0a;
-    color: #4caf50;
-    border: 1px solid #1a4a1a;
-  }
-  .mode-customer {
-    background: #3a2a00;
-    color: #f0a500;
-    border: 1px solid #5a4000;
-  }
-  .btn-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .mode-master   { background:#0a2a0a; color:#4caf50; border:1px solid #1a4a1a; }
+  .mode-cost     { background:#2a1a3a; color:#c77dff; border:1px solid #4a2a6a; }
+  .mode-customer { background:#3a2a00; color:#f0a500; border:1px solid #5a4000; }
+  .btn-group { display:flex; gap:8px; flex-wrap:wrap; }
   .refresh-btn, .logout-btn {
     border-radius: 6px;
     padding: 8px 16px;
@@ -158,20 +145,12 @@
     border: 1px solid;
     font-weight: bold;
   }
-  .refresh-btn {
-    background: #1e3a5f;
-    color: #7eb8f7;
-    border-color: #2a5a8f;
-  }
-  .logout-btn {
-    background: #3a1a1a;
-    color: #ff5555;
-    border-color: #5a2a2a;
-  }
-  .refresh-btn:hover  { background: #2a4a6f; }
-  .logout-btn:hover   { background: #4a2a2a; }
-  .refresh-btn:active { background: #0e2a4f; }
-  .logout-btn:active  { background: #2a1010; }
+  .refresh-btn { background:#1e3a5f; color:#7eb8f7; border-color:#2a5a8f; }
+  .logout-btn  { background:#3a1a1a; color:#ff5555; border-color:#5a2a2a; }
+  .refresh-btn:hover  { background:#2a4a6f; }
+  .logout-btn:hover   { background:#4a2a2a; }
+  .refresh-btn:active { background:#0e2a4f; }
+  .logout-btn:active  { background:#2a1010; }
 
   /* ══ TABLE ══════════════════════════════════ */
   .table-wrap {
@@ -213,121 +192,79 @@
     font-weight: bold;
     letter-spacing: 1px;
   }
-  .date   { color: #666; font-size: 12px; white-space: nowrap; }
-  .name   { color: #e0e0e0; font-weight: 500; }
-  .phone  { color: #888; font-size: 12px; }
-  .model  { color: #ccc; }
-  .issue  { color: #bbb; }
-  .amount { font-family: monospace; color: #7eb8f7; }
+  .date   { color:#666; font-size:12px; white-space:nowrap; }
+  .name   { color:#e0e0e0; font-weight:500; }
+  .phone  { color:#888; font-size:12px; }
+  .model  { color:#ccc; }
+  .issue  { color:#bbb; }
+  .amount { font-family:monospace; color:#7eb8f7; }
+  .cost-amount { font-family:monospace; color:#c77dff; }
   .partner-badge {
-    background: #0a2a0a;
-    color: #4caf50;
-    border: 1px solid #1a4a1a;
-    border-radius: 4px;
-    padding: 2px 8px;
-    font-size: 11px;
-    white-space: nowrap;
-    font-weight: bold;
+    background:#0a2a0a; color:#4caf50;
+    border:1px solid #1a4a1a;
+    border-radius:4px; padding:2px 8px;
+    font-size:11px; white-space:nowrap; font-weight:bold;
   }
   .status-pending {
-    background: #3a2a00;
-    color: #f0a500;
-    border: 1px solid #5a4000;
-    border-radius: 12px;
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: bold;
-    white-space: nowrap;
+    background:#3a2a00; color:#f0a500;
+    border:1px solid #5a4000;
+    border-radius:12px; padding:3px 10px;
+    font-size:11px; font-weight:bold; white-space:nowrap;
   }
   .status-done {
-    background: #0a2a0a;
-    color: #4caf50;
-    border: 1px solid #1a4a1a;
-    border-radius: 12px;
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: bold;
-    white-space: nowrap;
+    background:#0a2a0a; color:#4caf50;
+    border:1px solid #1a4a1a;
+    border-radius:12px; padding:3px 10px;
+    font-size:11px; font-weight:bold; white-space:nowrap;
   }
   .status-returned {
-    background: #1a1a3a;
-    color: #7eb8f7;
-    border: 1px solid #2a2a5a;
-    border-radius: 12px;
-    padding: 3px 10px;
-    font-size: 11px;
-    font-weight: bold;
-    white-space: nowrap;
+    background:#1a1a3a; color:#7eb8f7;
+    border:1px solid #2a2a5a;
+    border-radius:12px; padding:3px 10px;
+    font-size:11px; font-weight:bold; white-space:nowrap;
   }
-  .empty {
-    text-align: center;
-    padding: 40px;
-    color: #444;
-    font-size: 14px;
-  }
-  .na { color: #444; font-size: 12px; }
+  .empty { text-align:center; padding:40px; color:#444; font-size:14px; }
+  .na    { color:#444; font-size:12px; }
 
   /* ══ CUSTOMER CARD ══════════════════════════ */
-  .card-wrap {
-    max-width: 480px;
-    margin: 0 auto;
-  }
+  .card-wrap { max-width:480px; margin:0 auto; }
   .record-card {
-    background: #1a1a2e;
-    border: 1px solid #2a2a4a;
-    border-radius: 14px;
-    padding: 24px;
-    overflow: hidden;
+    background:#1a1a2e; border:1px solid #2a2a4a;
+    border-radius:14px; padding:24px; overflow:hidden;
   }
   .card-header {
-    text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #2a2a4a;
+    text-align:center; margin-bottom:20px;
+    padding-bottom:16px; border-bottom:1px solid #2a2a4a;
   }
-  .card-header .card-icon { font-size: 36px; margin-bottom: 8px; }
+  .card-header .card-icon { font-size:36px; margin-bottom:8px; }
   .card-header h3 {
-    color: #7eb8f7;
-    font-size: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color:#7eb8f7; font-size:15px;
+    letter-spacing:1px; text-transform:uppercase;
   }
   .card-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #1a1a2a;
-    gap: 12px;
+    display:flex; justify-content:space-between;
+    align-items:center; padding:10px 0;
+    border-bottom:1px solid #1a1a2a; gap:12px;
   }
-  .card-row:last-child { border-bottom: none; }
+  .card-row:last-child { border-bottom:none; }
   .card-label {
-    color: #555;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    flex-shrink: 0;
+    color:#555; font-size:11px;
+    text-transform:uppercase; letter-spacing:0.8px; flex-shrink:0;
   }
   .card-value {
-    color: #e0e0e0;
-    font-size: 13px;
-    text-align: right;
-    word-break: break-word;
+    color:#e0e0e0; font-size:13px;
+    text-align:right; word-break:break-word;
   }
 </style>
 </head>
-
 <body autocomplete="off">
 
-<!-- ══════════════════════════════════════════
-     LOGIN SCREEN
-     ══════════════════════════════════════════ -->
+<!-- ══ LOGIN ══ -->
 <div class="login-container" id="loginScreen">
   <div class="login-box">
     <div class="lock-icon">&#128274;</div>
     <h2>Customer Records</h2>
     <div class="subtitle">Enter your access code to continue</div>
-
     <input
       type="password"
       id="codeInput"
@@ -341,13 +278,10 @@
       onfocus="this.removeAttribute('readonly')"
       onkeydown="if(event.key==='Enter')doLogin()"
     >
-
     <button class="login-btn" onclick="doLogin()">
       &#128275;&nbsp; ACCESS
     </button>
-
     <div class="login-error" id="loginError"></div>
-
     <div class="login-hint">
       Master password &rarr; Full records<br>
       Device code &rarr; Your device status
@@ -355,72 +289,47 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     DASHBOARD
-     ══════════════════════════════════════════ -->
+<!-- ══ DASHBOARD ══ -->
 <div class="dashboard" id="dashboard">
-
   <div class="header">
     <div>
       <h1>&#128188; Customer Records</h1>
-      <div class="updated">Updated: 2026-04-11 04:00:08 PM</div>
+      <div class="updated">Updated: 2026-04-11 05:58:09 PM</div>
       <div class="mode-badge" id="modeBadge"></div>
     </div>
     <div class="btn-group">
-      <button class="refresh-btn" onclick="doRefresh()">
-        &#8635; Refresh
-      </button>
-      <button class="logout-btn" onclick="doLogout()">
-        &#9211; Logout
-      </button>
+      <button class="refresh-btn" onclick="doRefresh()">&#8635; Refresh</button>
+      <button class="logout-btn"  onclick="doLogout()">&#9211; Logout</button>
     </div>
   </div>
 
-  <!-- Master: full table -->
   <div id="masterView" style="display:none;">
     <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Date &amp; Time</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Model</th>
-            <th>Issue</th>
-            <th>Advance</th>
-            <th>Total</th>
-            <th>Status</th>
-          </tr>
-        </thead>
+        <thead><tr id="tableHead"></tr></thead>
         <tbody id="masterBody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- Customer: single card -->
   <div id="customerView" style="display:none;">
     <div class="card-wrap">
       <div class="record-card" id="customerCard"></div>
     </div>
   </div>
+</div>
 
-</div><!-- end dashboard -->
-
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-     ══════════════════════════════════════════ -->
 <script>
 const MASTER_HASH = "7c180e3e3bee93dde4c28a4999b4cc3604ee53524c3b245485d41ac36d478c82";
-const records     = [{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno BG6","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","stat":"P"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","stat":"P"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"2000","tot":"3000","stat":"P"},{"code":"F9G2L","date":"2026-04-11 03:58 PM","name":"N/A","phone":"03488690661","model":"huawei y9 2019","issue":"panel","adv":"0","tot":"3500","stat":"D"}];
+const COST_HASH   = "feefd29796462ae3bb2e0e50ff4392f7dbd943960c3df621b450f3d786582733";
+const records     = [{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"P"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"P"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno BG6","issue":"panel","adv":"1000","tot":"3000","cost":"0","stat":"P"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","cost":"350","stat":"P"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","cost":"0","stat":"P"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"P"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"2000","tot":"3000","cost":"0","stat":"P"},{"code":"F9G2L","date":"2026-04-11 03:58 PM","name":"N/A","phone":"03488690661","model":"huawei y9 2019","issue":"panel","adv":"0","tot":"3500","cost":"0","stat":"D"}];
 
 // ════════════════════════════════════════════
-//  STATE  (memory only — lost on any navigation)
+//  STATE
 // ════════════════════════════════════════════
 let isLoggedIn  = false;
 let currentMode = null;
 
-// ── Clear everything on page load ────────────
 window.addEventListener('load', function () {
     clearInput();
     showLoginScreen();
@@ -431,14 +340,12 @@ window.addEventListener('load', function () {
     }, 150);
 });
 
-// ── Log out when tab hidden ───────────────────
 document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden' && isLoggedIn) {
         forceLogout();
     }
 });
 
-// ── Wipe on unload ────────────────────────────
 window.addEventListener('beforeunload', function () {
     forceLogout();
     clearInput();
@@ -450,10 +357,7 @@ window.addEventListener('beforeunload', function () {
 
 function clearInput() {
     const inp = document.getElementById('codeInput');
-    if (inp) {
-        inp.value = '';
-        inp.setAttribute('readonly', true);
-    }
+    if (inp) { inp.value = ''; inp.setAttribute('readonly', true); }
 }
 
 function escHtml(s) {
@@ -481,10 +385,15 @@ function statusText(s) {
 }
 
 function amountHtml(v) {
-    if (v === 'PARTNER') {
-        return '<span class="partner-badge">PARTNER</span>';
-    }
+    if (v === 'PARTNER') return '<span class="partner-badge">PARTNER</span>';
     return '<span class="amount">Rs&nbsp;' + escHtml(v) + '</span>';
+}
+
+function costHtml(v, isPartner) {
+    if (isPartner) return '<span class="na">N/A</span>';
+    if (!v || v === '0' || v === '')
+        return '<span class="na">&#8212;</span>';
+    return '<span class="cost-amount">Rs&nbsp;' + escHtml(v) + '</span>';
 }
 
 function phoneHtml(p) {
@@ -494,12 +403,9 @@ function phoneHtml(p) {
 
 async function sha256(msg) {
     const buf = await crypto.subtle.digest(
-        'SHA-256',
-        new TextEncoder().encode(msg)
-    );
+        'SHA-256', new TextEncoder().encode(msg));
     return Array.from(new Uint8Array(buf))
-        .map(function (b) { return b.toString(16).padStart(2, '0'); })
-        .join('');
+        .map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
 }
 
 // ════════════════════════════════════════════
@@ -509,7 +415,6 @@ async function sha256(msg) {
 function showLoginScreen() {
     isLoggedIn  = false;
     currentMode = null;
-
     document.getElementById('loginScreen').style.display   = 'flex';
     document.getElementById('dashboard').style.display     = 'none';
     document.getElementById('masterView').style.display    = 'none';
@@ -534,10 +439,7 @@ function doLogout() {
     }, 80);
 }
 
-function doRefresh() {
-    forceLogout();
-    location.reload();
-}
+function doRefresh() { forceLogout(); location.reload(); }
 
 // ════════════════════════════════════════════
 //  LOGIN
@@ -547,8 +449,7 @@ async function doLogin() {
     const inp   = document.getElementById('codeInput');
     const errEl = document.getElementById('loginError');
     const raw   = inp.value.trim();
-
-    inp.value = '';
+    inp.value   = '';
 
     if (!raw) {
         errEl.style.display = 'block';
@@ -559,67 +460,87 @@ async function doLogin() {
     const inputHash  = await sha256(raw.toLowerCase());
     const upperInput = raw.toUpperCase();
 
-    // ── Master password ──────────────────────
     if (inputHash === MASTER_HASH) {
-        isLoggedIn  = true;
-        currentMode = 'master';
-
-        document.getElementById('loginScreen').style.display  = 'none';
-        document.getElementById('dashboard').style.display    = 'block';
-        document.getElementById('masterView').style.display   = 'block';
-        document.getElementById('customerView').style.display = 'none';
-
-        const badge       = document.getElementById('modeBadge');
-        badge.className   = 'mode-badge mode-master';
-        badge.textContent = '🔓 FULL ACCESS';
-
-        renderMasterTable();
+        loginSuccess('master', null);
         return;
     }
 
-    // ── Secret code ──────────────────────────
+    if (inputHash === COST_HASH) {
+        loginSuccess('cost', null);
+        return;
+    }
+
     const found = records.find(function (r) {
         return r.code === upperInput;
     });
-
     if (found) {
-        isLoggedIn  = true;
-        currentMode = 'customer';
-
-        document.getElementById('loginScreen').style.display  = 'none';
-        document.getElementById('dashboard').style.display    = 'block';
-        document.getElementById('masterView').style.display   = 'none';
-        document.getElementById('customerView').style.display = 'block';
-
-        const badge       = document.getElementById('modeBadge');
-        badge.className   = 'mode-badge mode-customer';
-        badge.textContent = '👤 YOUR DEVICE';
-
-        renderCustomerCard(found);
+        loginSuccess('customer', found);
         return;
     }
 
-    // ── Invalid ──────────────────────────────
     errEl.style.display = 'block';
     errEl.textContent   = '❌  Invalid code. Please try again.';
     inp.focus();
 }
 
+function loginSuccess(mode, record) {
+    isLoggedIn  = true;
+    currentMode = mode;
+
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display   = 'block';
+
+    const badge = document.getElementById('modeBadge');
+
+    if (mode === 'master') {
+        badge.className   = 'mode-badge mode-master';
+        badge.textContent = '🔓 FULL ACCESS';
+        document.getElementById('masterView').style.display   = 'block';
+        document.getElementById('customerView').style.display = 'none';
+        renderMasterTable(false);
+
+    } else if (mode === 'cost') {
+        badge.className   = 'mode-badge mode-cost';
+        badge.textContent = '💰 COST VIEW';
+        document.getElementById('masterView').style.display   = 'block';
+        document.getElementById('customerView').style.display = 'none';
+        renderMasterTable(true);
+
+    } else if (mode === 'customer') {
+        badge.className   = 'mode-badge mode-customer';
+        badge.textContent = '👤 YOUR DEVICE';
+        document.getElementById('masterView').style.display   = 'none';
+        document.getElementById('customerView').style.display = 'block';
+        renderCustomerCard(record);
+    }
+}
+
 // ════════════════════════════════════════════
-//  RENDER — MASTER TABLE
+//  RENDER — TABLE
 // ════════════════════════════════════════════
 
-function renderMasterTable() {
+function renderMasterTable(showCost) {
+    const thead = document.getElementById('tableHead');
     const tbody = document.getElementById('masterBody');
+    const cols  = showCost ? 10 : 9;
+
+    let hdr = '<th>Code</th><th>Date &amp; Time</th><th>Name</th>' +
+              '<th>Phone</th><th>Model</th><th>Issue</th>' +
+              '<th>Advance</th><th>Total</th>';
+    if (showCost) hdr += '<th style="color:#c77dff;">Cost</th>';
+    hdr += '<th>Status</th>';
+    thead.innerHTML = hdr;
 
     if (!records || records.length === 0) {
         tbody.innerHTML =
-            '<tr><td colspan="9" class="empty">No records found</td></tr>';
+            '<tr><td colspan="' + cols +
+            '" class="empty">No records found</td></tr>';
         return;
     }
 
     let html = '';
     records.forEach(function (r) {
+        const isPartner = (r.adv === 'PARTNER');
         html += '<tr>';
         html += '<td><span class="code">'  + escHtml(r.code)    + '</span></td>';
         html += '<td><span class="date">'  + escHtml(r.date)    + '</span></td>';
@@ -629,10 +550,12 @@ function renderMasterTable() {
         html += '<td><span class="issue">' + escHtml(r.issue)   + '</span></td>';
         html += '<td>'                     + amountHtml(r.adv)  + '</td>';
         html += '<td>'                     + amountHtml(r.tot)  + '</td>';
-        html += '<td>'                     + statusHtml(r.stat) + '</td>';
+        if (showCost) {
+            html += '<td>' + costHtml(r.cost, isPartner) + '</td>';
+        }
+        html += '<td>' + statusHtml(r.stat) + '</td>';
         html += '</tr>';
     });
-
     tbody.innerHTML = html;
 }
 
@@ -650,14 +573,12 @@ function cardRow(label, valueHtml) {
 function renderCustomerCard(r) {
     const statClass =
         r.stat === 'P' ? 'status-pending' :
-        r.stat === 'D' ? 'status-done'    :
-                         'status-returned';
+        r.stat === 'D' ? 'status-done'    : 'status-returned';
 
     const html =
         '<div class="card-header">' +
-        '  <div class="card-icon">&#128241;</div>' +
-        '  <h3>Device Receipt</h3>' +
-        '</div>' +
+        '<div class="card-icon">&#128241;</div>' +
+        '<h3>Device Receipt</h3></div>' +
         cardRow('Code',    '<span class="code">' + escHtml(r.code) + '</span>') +
         cardRow('Date',    escHtml(r.date))    +
         cardRow('Name',    escHtml(r.name))    +
