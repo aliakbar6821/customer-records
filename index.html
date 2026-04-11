@@ -3,17 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
 <title>Customer Records</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     background: #0f0f0f;
     color: #e0e0e0;
     font-family: Arial, sans-serif;
     padding: 16px;
+    min-height: 100vh;
   }
+
+  /* ══ LOGIN SCREEN ══════════════════════════ */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+  }
+  .login-box {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 14px;
+    padding: 36px 28px;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+  }
+  .lock-icon { font-size: 52px; margin-bottom: 14px; }
+  .login-box h2 {
+    color: #7eb8f7;
+    font-size: 19px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .login-box .subtitle {
+    color: #555;
+    font-size: 12px;
+    margin-bottom: 26px;
+  }
+  .login-box input {
+    width: 100%;
+    background: #0f0f1a;
+    border: 1px solid #2a2a4a;
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: #e0e0e0;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 4px;
+    font-family: monospace;
+    outline: none;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+    -webkit-text-security: disc;
+  }
+  .login-box input:focus { border-color: #7eb8f7; }
+  .login-box input::placeholder {
+    color: #333;
+    letter-spacing: 1px;
+    font-size: 13px;
+  }
+  .login-btn {
+    width: 100%;
+    background: #1e3a5f;
+    color: #7eb8f7;
+    border: 1px solid #2a5a8f;
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.15s;
+  }
+  .login-btn:hover  { background: #2a4a6f; }
+  .login-btn:active { background: #0e2a4f; }
+  .login-error {
+    color: #ff5555;
+    font-size: 12px;
+    margin-top: 14px;
+    display: none;
+    padding: 8px;
+    background: #2a1010;
+    border-radius: 6px;
+    border: 1px solid #4a2020;
+  }
+  .login-hint {
+    color: #333;
+    font-size: 11px;
+    margin-top: 18px;
+    line-height: 1.7;
+  }
+
+  /* ══ DASHBOARD ═════════════════════════════ */
+  .dashboard { display: none; }
+
   .header {
     background: #1a1a2e;
     border: 1px solid #2a2a4a;
@@ -33,23 +122,59 @@
   }
   .header .updated {
     font-size: 12px;
-    color: #888;
+    color: #555;
     margin-top: 4px;
   }
-  .refresh-btn {
-    background: #1e3a5f;
-    color: #7eb8f7;
-    border: 1px solid #2a5a8f;
+  .mode-badge {
+    font-size: 11px;
+    margin-top: 5px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .mode-master {
+    background: #0a2a0a;
+    color: #4caf50;
+    border: 1px solid #1a4a1a;
+  }
+  .mode-customer {
+    background: #3a2a00;
+    color: #f0a500;
+    border: 1px solid #5a4000;
+  }
+  .btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .refresh-btn, .logout-btn {
     border-radius: 6px;
     padding: 8px 16px;
     font-size: 13px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
+    border: 1px solid;
+    font-weight: bold;
   }
-  .refresh-btn:active {
-    background: #2a4a6f;
+  .refresh-btn {
+    background: #1e3a5f;
+    color: #7eb8f7;
+    border-color: #2a5a8f;
   }
+  .logout-btn {
+    background: #3a1a1a;
+    color: #ff5555;
+    border-color: #5a2a2a;
+  }
+  .refresh-btn:hover  { background: #2a4a6f; }
+  .logout-btn:hover   { background: #4a2a2a; }
+  .refresh-btn:active { background: #0e2a4f; }
+  .logout-btn:active  { background: #2a1010; }
+
+  /* ══ TABLE ══════════════════════════════════ */
   .table-wrap {
     overflow-x: auto;
     border-radius: 10px;
@@ -75,15 +200,13 @@
     white-space: nowrap;
   }
   tbody tr {
-    border-bottom: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1a1a1a;
     transition: background 0.15s;
   }
   tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #1a1a1a; }
-  tbody td {
-    padding: 11px 14px;
-    vertical-align: middle;
-  }
+  tbody tr:hover { background: #161616; }
+  tbody td { padding: 11px 14px; vertical-align: middle; }
+
   .code {
     font-family: monospace;
     font-size: 13px;
@@ -91,23 +214,21 @@
     font-weight: bold;
     letter-spacing: 1px;
   }
-  .date  { color: #888; font-size: 12px; white-space: nowrap; }
-  .name  { color: #e0e0e0; font-weight: 500; }
-  .phone { color: #aaa; font-size: 12px; }
-  .model { color: #ccc; }
-  .issue { color: #bbb; }
-  .amount {
-    font-family: monospace;
-    color: #7eb8f7;
-  }
+  .date   { color: #666; font-size: 12px; white-space: nowrap; }
+  .name   { color: #e0e0e0; font-weight: 500; }
+  .phone  { color: #888; font-size: 12px; }
+  .model  { color: #ccc; }
+  .issue  { color: #bbb; }
+  .amount { font-family: monospace; color: #7eb8f7; }
   .partner-badge {
-    background: #1a3a1a;
+    background: #0a2a0a;
     color: #4caf50;
-    border: 1px solid #2a5a2a;
+    border: 1px solid #1a4a1a;
     border-radius: 4px;
     padding: 2px 8px;
     font-size: 11px;
     white-space: nowrap;
+    font-weight: bold;
   }
   .status-pending {
     background: #3a2a00;
@@ -142,51 +263,420 @@
   .empty {
     text-align: center;
     padding: 40px;
-    color: #555;
+    color: #444;
     font-size: 14px;
   }
-  .na { color: #555; font-size: 12px; }
+  .na { color: #444; font-size: 12px; }
+
+  /* ══ CUSTOMER CARD ══════════════════════════ */
+  .card-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .record-card {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 14px;
+    padding: 24px;
+    overflow: hidden;
+  }
+  .card-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a2a4a;
+  }
+  .card-header .card-icon { font-size: 36px; margin-bottom: 8px; }
+  .card-header h3 {
+    color: #7eb8f7;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a2a;
+    gap: 12px;
+  }
+  .card-row:last-child { border-bottom: none; }
+  .card-label {
+    color: #555;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    flex-shrink: 0;
+  }
+  .card-value {
+    color: #e0e0e0;
+    font-size: 13px;
+    text-align: right;
+    word-break: break-word;
+  }
 </style>
 </head>
-<body>
 
-<div class="header">
-  <div>
-    <h1>&#128188; Customer Records</h1>
-    <div class="updated">Updated: 2026-04-11 02:01:24 PM</div>
+<body autocomplete="off">
+
+<!-- ══════════════════════════════════════════
+     LOGIN SCREEN
+     ══════════════════════════════════════════ -->
+<div class="login-container" id="loginScreen">
+  <div class="login-box">
+    <div class="lock-icon">&#128274;</div>
+    <h2>Customer Records</h2>
+    <div class="subtitle">Enter your access code to continue</div>
+
+    <input
+      type="password"
+      id="codeInput"
+      placeholder="Enter code..."
+      autocomplete="new-password"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      data-form-type="other"
+      readonly
+      onfocus="this.removeAttribute('readonly')"
+      onkeydown="if(event.key==='Enter')doLogin()"
+    >
+
+    <button class="login-btn" onclick="doLogin()">
+      &#128275;&nbsp; ACCESS
+    </button>
+
+    <div class="login-error" id="loginError"></div>
+
+    <div class="login-hint">
+      Master password &rarr; Full records<br>
+      Device code &rarr; Your device status
+    </div>
   </div>
-  <a class="refresh-btn" href="javascript:location.reload()">&#8635; Refresh</a>
 </div>
 
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-  <th>Code</th>
-  <th>Date &amp; Time</th>
-  <th>Name</th>
-  <th>Phone</th>
-  <th>Model</th>
-  <th>Issue</th>
-  <th>Advance</th>
-  <th>Total</th>
-  <th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><span class="code">Z7T2P</span></td>
-  <td><span class="date">2026-04-11 02:00 PM</span></td>
-  <td><span class="name">murtaza</span></td>
-  <td><span class="phone"><span class='na'>N/A</span></span></td>
-  <td><span class="model">vivo</span></td>
-  <td><span class="issue">battery & backcover replacment</span></td>
-  <td><span class='partner-badge'>PARTNER</span></td>
-  <td><span class='partner-badge'>PARTNER</span></td>
-  <td><span class='status-pending'>Pending</span></td>
-</tr>
-</tbody>
-</table>
-</div>
+<!-- ══════════════════════════════════════════
+     DASHBOARD
+     ══════════════════════════════════════════ -->
+<div class="dashboard" id="dashboard">
+
+  <div class="header">
+    <div>
+      <h1>&#128188; Customer Records</h1>
+      <div class="updated">Updated: 2026-04-11 02:36:32 PM</div>
+      <div class="mode-badge" id="modeBadge"></div>
+    </div>
+    <div class="btn-group">
+      <button class="refresh-btn" onclick="doRefresh()">
+        &#8635; Refresh
+      </button>
+      <button class="logout-btn" onclick="doLogout()">
+        &#9211; Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Master: full table -->
+  <div id="masterView" style="display:none;">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Date &amp; Time</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Model</th>
+            <th>Issue</th>
+            <th>Advance</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="masterBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Customer: single card -->
+  <div id="customerView" style="display:none;">
+    <div class="card-wrap">
+      <div class="record-card" id="customerCard"></div>
+    </div>
+  </div>
+
+</div><!-- end dashboard -->
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+     ══════════════════════════════════════════ -->
+<script>
+const MASTER_HASH = "7c180e3e3bee93dde4c28a4999b4cc3604ee53524c3b245485d41ac36d478c82";
+const records     = [{"code":"Z7T2P","date":"2026-04-11 02:00 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover replacment","adv":"PARTNER","tot":"PARTNER","stat":"P"},{"code":"R6Q1L","date":"2026-04-11 02:35 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery+backcover","adv":"PARTNER","tot":"PARTNER","stat":"P"}];
+
+// ════════════════════════════════════════════
+//  STATE  (memory only — lost on any navigation)
+// ════════════════════════════════════════════
+let isLoggedIn  = false;
+let currentMode = null; // 'master' | 'customer'
+
+// ── Clear everything on page load ────────────
+window.addEventListener('load', function () {
+    clearInput();
+    showLoginScreen();
+    // Remove readonly after a short delay to defeat autofill timing
+    setTimeout(function () {
+        const inp = document.getElementById('codeInput');
+        inp.removeAttribute('readonly');
+        inp.focus();
+    }, 150);
+});
+
+// ── Log out when tab is hidden (switch tab / minimise / lock) ────────────
+document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden' && isLoggedIn) {
+        forceLogout();
+    }
+});
+
+// ── Wipe on any unload (close, refresh, back) ────────────────────────────
+window.addEventListener('beforeunload', function () {
+    forceLogout();
+    clearInput();
+});
+
+// ════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════
+
+function clearInput() {
+    const inp = document.getElementById('codeInput');
+    if (inp) {
+        inp.value = '';
+        inp.setAttribute('readonly', true);
+    }
+}
+
+function escHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = String(s);
+    return d.innerHTML;
+}
+
+function statusHtml(s) {
+    switch (s) {
+        case 'P': return '<span class="status-pending">&#9679; Pending</span>';
+        case 'D': return '<span class="status-done">&#10003; Done</span>';
+        case 'R': return '<span class="status-returned">&#8617; Returned</span>';
+        default:  return '<span class="status-pending">' + escHtml(s) + '</span>';
+    }
+}
+
+function statusText(s) {
+    switch (s) {
+        case 'P': return '&#9679; Pending';
+        case 'D': return '&#10003; Done';
+        case 'R': return '&#8617; Returned';
+        default:  return escHtml(s);
+    }
+}
+
+function amountHtml(v) {
+    if (v === 'PARTNER') {
+        return '<span class="partner-badge">PARTNER</span>';
+    }
+    return '<span class="amount">Rs&nbsp;' + escHtml(v) + '</span>';
+}
+
+function phoneHtml(p) {
+    if (p === 'N/A') return '<span class="na">N/A</span>';
+    return escHtml(p);
+}
+
+// SHA-256 via Web Crypto API
+async function sha256(msg) {
+    const buf = await crypto.subtle.digest(
+        'SHA-256',
+        new TextEncoder().encode(msg)
+    );
+    return Array.from(new Uint8Array(buf))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+}
+
+// ════════════════════════════════════════════
+//  SCREEN CONTROL
+// ════════════════════════════════════════════
+
+function showLoginScreen() {
+    isLoggedIn  = false;
+    currentMode = null;
+
+    document.getElementById('loginScreen').style.display   = 'flex';
+    document.getElementById('dashboard').style.display     = 'none';
+    document.getElementById('masterView').style.display    = 'none';
+    document.getElementById('customerView').style.display  = 'none';
+    document.getElementById('loginError').style.display    = 'none';
+    document.getElementById('loginError').textContent      = '';
+    clearInput();
+}
+
+function forceLogout() {
+    isLoggedIn  = false;
+    currentMode = null;
+    clearInput();
+}
+
+function doLogout() {
+    showLoginScreen();
+    setTimeout(function () {
+        const inp = document.getElementById('codeInput');
+        inp.removeAttribute('readonly');
+        inp.focus();
+    }, 80);
+}
+
+// Refresh = logout first, then hard reload so data is fresh
+function doRefresh() {
+    forceLogout();
+    location.reload();
+}
+
+// ════════════════════════════════════════════
+//  LOGIN
+// ════════════════════════════════════════════
+
+async function doLogin() {
+    const inp   = document.getElementById('codeInput');
+    const errEl = document.getElementById('loginError');
+    const raw   = inp.value.trim();
+
+    // Always clear the field right away so nothing lingers in the DOM
+    inp.value = '';
+
+    if (!raw) {
+        errEl.style.display = 'block';
+        errEl.textContent   = '⚠️  Please enter a code.';
+        return;
+    }
+
+    const inputHash  = await sha256(raw.toLowerCase());
+    const upperInput = raw.toUpperCase();
+
+    // ── Master password ──────────────────────
+    if (inputHash === MASTER_HASH) {
+        isLoggedIn  = true;
+        currentMode = 'master';
+
+        document.getElementById('loginScreen').style.display  = 'none';
+        document.getElementById('dashboard').style.display    = 'block';
+        document.getElementById('masterView').style.display   = 'block';
+        document.getElementById('customerView').style.display = 'none';
+
+        const badge       = document.getElementById('modeBadge');
+        badge.className   = 'mode-badge mode-master';
+        badge.textContent = '🔓 FULL ACCESS';
+
+        renderMasterTable();
+        return;
+    }
+
+    // ── Secret code ──────────────────────────
+    const found = records.find(function (r) {
+        return r.code === upperInput;
+    });
+
+    if (found) {
+        isLoggedIn  = true;
+        currentMode = 'customer';
+
+        document.getElementById('loginScreen').style.display  = 'none';
+        document.getElementById('dashboard').style.display    = 'block';
+        document.getElementById('masterView').style.display   = 'none';
+        document.getElementById('customerView').style.display = 'block';
+
+        const badge       = document.getElementById('modeBadge');
+        badge.className   = 'mode-badge mode-customer';
+        badge.textContent = '👤 YOUR DEVICE';
+
+        renderCustomerCard(found);
+        return;
+    }
+
+    // ── Invalid ──────────────────────────────
+    errEl.style.display = 'block';
+    errEl.textContent   = '❌  Invalid code. Please try again.';
+    inp.focus();
+}
+
+// ════════════════════════════════════════════
+//  RENDER — MASTER TABLE
+// ════════════════════════════════════════════
+
+function renderMasterTable() {
+    const tbody = document.getElementById('masterBody');
+
+    if (!records || records.length === 0) {
+        tbody.innerHTML =
+            '<tr><td colspan="9" class="empty">No records found</td></tr>';
+        return;
+    }
+
+    let html = '';
+    records.forEach(function (r) {
+        html += '<tr>';
+        html += '<td><span class="code">'  + escHtml(r.code)    + '</span></td>';
+        html += '<td><span class="date">'  + escHtml(r.date)    + '</span></td>';
+        html += '<td><span class="name">'  + escHtml(r.name)    + '</span></td>';
+        html += '<td><span class="phone">' + phoneHtml(r.phone) + '</span></td>';
+        html += '<td><span class="model">' + escHtml(r.model)   + '</span></td>';
+        html += '<td><span class="issue">' + escHtml(r.issue)   + '</span></td>';
+        html += '<td>'                     + amountHtml(r.adv)  + '</td>';
+        html += '<td>'                     + amountHtml(r.tot)  + '</td>';
+        html += '<td>'                     + statusHtml(r.stat) + '</td>';
+        html += '</tr>';
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ════════════════════════════════════════════
+//  RENDER — CUSTOMER CARD
+// ════════════════════════════════════════════
+
+function cardRow(label, valueHtml) {
+    return '<div class="card-row">' +
+           '<span class="card-label">' + label + '</span>' +
+           '<span class="card-value">' + valueHtml + '</span>' +
+           '</div>';
+}
+
+function renderCustomerCard(r) {
+    const statClass =
+        r.stat === 'P' ? 'status-pending' :
+        r.stat === 'D' ? 'status-done'    :
+                         'status-returned';
+
+    const html =
+        '<div class="card-header">' +
+        '  <div class="card-icon">&#128241;</div>' +
+        '  <h3>Device Receipt</h3>' +
+        '</div>' +
+        cardRow('Code',    '<span class="code">' + escHtml(r.code) + '</span>') +
+        cardRow('Date',    escHtml(r.date))   +
+        cardRow('Name',    escHtml(r.name))   +
+        cardRow('Phone',   phoneHtml(r.phone))+
+        cardRow('Model',   escHtml(r.model))  +
+        cardRow('Issue',   escHtml(r.issue))  +
+        cardRow('Advance', amountHtml(r.adv)) +
+        cardRow('Total',   amountHtml(r.tot)) +
+        cardRow('Status',
+            '<span class="' + statClass + '">' +
+            statusText(r.stat) + '</span>');
+
+    document.getElementById('customerCard').innerHTML = html;
+}
+</script>
 </body>
 </html>
