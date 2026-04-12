@@ -29,61 +29,52 @@
     color:#7eb8f7; font-size:19px;
     margin-bottom:6px; letter-spacing:1px;
   }
-  .login-box .subtitle {
-    color:#555; font-size:12px; margin-bottom:26px;
-  }
+  .login-box .subtitle { color:#555; font-size:12px; margin-bottom:26px; }
   .login-box input {
-    width:100%; background:#0f0f1a;
-    border:1px solid #2a2a4a; border-radius:8px;
-    padding:13px 16px; color:#e0e0e0; font-size:16px;
-    text-align:center; letter-spacing:4px;
-    font-family:monospace; outline:none;
-    margin-bottom:14px; transition:border-color 0.2s;
+    width:100%; background:#0f0f1a; border:1px solid #2a2a4a;
+    border-radius:8px; padding:13px 16px; color:#e0e0e0;
+    font-size:16px; text-align:center; letter-spacing:4px;
+    font-family:monospace; outline:none; margin-bottom:14px;
+    transition:border-color 0.2s;
   }
   .login-box input:focus { border-color:#7eb8f7; }
-  .login-box input::placeholder {
-    color:#333; letter-spacing:1px; font-size:13px;
-  }
+  .login-box input::placeholder { color:#333; letter-spacing:1px; font-size:13px; }
   .login-btn {
     width:100%; background:#1e3a5f; color:#7eb8f7;
-    border:1px solid #2a5a8f; border-radius:8px;
-    padding:13px; font-size:14px; font-weight:bold;
-    cursor:pointer; letter-spacing:1px; transition:background 0.15s;
+    border:1px solid #2a5a8f; border-radius:8px; padding:13px;
+    font-size:14px; font-weight:bold; cursor:pointer;
+    letter-spacing:1px; transition:background 0.15s;
   }
   .login-btn:hover  { background:#2a4a6f; }
   .login-btn:active { background:#0e2a4f; }
   .login-error {
-    color:#ff5555; font-size:12px; margin-top:14px;
-    display:none; padding:8px; background:#2a1010;
-    border-radius:6px; border:1px solid #4a2020;
+    color:#ff5555; font-size:12px; margin-top:14px; display:none;
+    padding:8px; background:#2a1010; border-radius:6px;
+    border:1px solid #4a2020;
   }
-  .login-hint {
-    color:#333; font-size:11px; margin-top:18px; line-height:1.7;
-  }
+  .login-hint { color:#333; font-size:11px; margin-top:18px; line-height:1.7; }
 
   /* ══ DASHBOARD ══════════════════════════════ */
   .dashboard { display:none; }
   .header {
-    background:#1a1a2e; border:1px solid #2a2a4a;
-    border-radius:10px; padding:16px 20px; margin-bottom:20px;
-    display:flex; justify-content:space-between;
-    align-items:center; flex-wrap:wrap; gap:10px;
+    background:#1a1a2e; border:1px solid #2a2a4a; border-radius:10px;
+    padding:16px 20px; margin-bottom:20px; display:flex;
+    justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:10px;
   }
   .header h1 { font-size:18px; color:#7eb8f7; letter-spacing:1px; }
   .header .updated { font-size:12px; color:#555; margin-top:4px; }
   .mode-badge {
-    font-size:11px; margin-top:5px; padding:3px 10px;
-    border-radius:4px; display:inline-block;
-    font-weight:bold; letter-spacing:0.5px;
+    font-size:11px; margin-top:5px; padding:3px 10px; border-radius:4px;
+    display:inline-block; font-weight:bold; letter-spacing:0.5px;
   }
   .mode-master   { background:#0a2a0a; color:#4caf50; border:1px solid #1a4a1a; }
   .mode-cost     { background:#2a1a3a; color:#c77dff; border:1px solid #4a2a6a; }
   .mode-customer { background:#3a2a00; color:#f0a500; border:1px solid #5a4000; }
   .btn-group { display:flex; gap:8px; flex-wrap:wrap; }
   .refresh-btn, .logout-btn {
-    border-radius:6px; padding:8px 16px; font-size:13px;
-    cursor:pointer; text-decoration:none; display:inline-block;
-    border:1px solid; font-weight:bold;
+    border-radius:6px; padding:8px 16px; font-size:13px; cursor:pointer;
+    text-decoration:none; display:inline-block; border:1px solid; font-weight:bold;
   }
   .refresh-btn { background:#1e3a5f; color:#7eb8f7; border-color:#2a5a8f; }
   .logout-btn  { background:#3a1a1a; color:#ff5555; border-color:#5a2a2a; }
@@ -93,13 +84,8 @@
   .logout-btn:active  { background:#2a1010; }
 
   /* ══ TABLE ══════════════════════════════════ */
-  .table-wrap {
-    overflow-x:auto; border-radius:10px; border:1px solid #2a2a2a;
-  }
-  table {
-    width:100%; border-collapse:collapse;
-    min-width:700px; font-size:13px;
-  }
+  .table-wrap { overflow-x:auto; border-radius:10px; border:1px solid #2a2a2a; }
+  table { width:100%; border-collapse:collapse; min-width:700px; font-size:13px; }
   thead tr {
     background:#1a1a2e; color:#7eb8f7;
     text-transform:uppercase; font-size:11px; letter-spacing:0.5px;
@@ -126,8 +112,8 @@
   .cost-amount { font-family:monospace; color:#c77dff; }
   .partner-badge {
     background:#0a2a0a; color:#4caf50; border:1px solid #1a4a1a;
-    border-radius:4px; padding:2px 8px;
-    font-size:11px; white-space:nowrap; font-weight:bold;
+    border-radius:4px; padding:2px 8px; font-size:11px;
+    white-space:nowrap; font-weight:bold;
   }
   .status-pending {
     background:#3a2a00; color:#f0a500; border:1px solid #5a4000;
@@ -149,6 +135,15 @@
     border-radius:12px; padding:3px 10px;
     font-size:11px; font-weight:bold; white-space:nowrap;
   }
+
+  /* ══ GROUP DIVIDER ══════════════════════════ */
+  .group-divider td {
+    background:#111; color:#444; font-size:10px;
+    text-transform:uppercase; letter-spacing:2px;
+    padding:6px 14px; text-align:center;
+    border-bottom:1px solid #1a1a1a;
+  }
+
   .empty { text-align:center; padding:40px; color:#444; font-size:14px; }
   .na    { color:#444; font-size:12px; }
 
@@ -220,7 +215,7 @@
   <div class="header">
     <div>
       <h1>&#128188; Customer Records</h1>
-      <div class="updated">Updated: 2026-04-12 06:12:06 PM</div>
+      <div class="updated">Updated: 2026-04-12 07:10:16 PM</div>
       <div class="mode-badge" id="modeBadge"></div>
     </div>
     <div class="btn-group">
@@ -248,7 +243,7 @@
 <script>
 const MASTER_HASH = "7c180e3e3bee93dde4c28a4999b4cc3604ee53524c3b245485d41ac36d478c82";
 const COST_HASH   = "feefd29796462ae3bb2e0e50ff4392f7dbd943960c3df621b450f3d786582733";
-const records     = [{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno bg6","issue":"panel","adv":"0","tot":"3000","cost":"1800","stat":"D"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","cost":"350","stat":"C"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","cost":"1650","stat":"C"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"2000","tot":"3000","cost":"1650","stat":"C"},{"code":"F9G2L","date":"2026-03-28 07:30 PM","name":"N/A","phone":"03488690661","model":"huawei y9 2019","issue":"panel","adv":"0","tot":"3500","cost":"1900","stat":"D"},{"code":"O5T4S","date":"2026-04-11 09:12 PM","name":"N/A","phone":"N/A","model":"oppo a3x","issue":"panel","adv":"1000","tot":"3000","cost":"2000","stat":"P"},{"code":"I9M5V","date":"2026-04-12 12:32 AM","name":"N/A","phone":"N/A","model":"china keypad green blue","issue":"lcd","adv":"0","tot":"500","cost":"250","stat":"D"},{"code":"Q3F0R","date":"2026-04-12 12:22 PM","name":"murtaza","phone":"N/A","model":"infinix x6881","issue":"panel LCD","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"P"},{"code":"B3O6Z","date":"2026-04-12 01:10 PM","name":"N/A","phone":"N/A","model":"infinix x653c","issue":"backcover&power button&charging strips","adv":"500","tot":"1500","cost":"800","stat":"D"}];
+const records     = [{"code":"O5T4S","date":"2026-04-11 09:12 PM","name":"N/A","phone":"N/A","model":"oppo a3x","issue":"panel","adv":"1000","tot":"3000","cost":"2000","stat":"P"},{"code":"I9M5V","date":"2026-04-12 12:32 AM","name":"N/A","phone":"N/A","model":"china keypad green blue","issue":"lcd","adv":"0","tot":"500","cost":"250","stat":"D"},{"code":"Q3F0R","date":"2026-04-12 12:22 PM","name":"murtaza","phone":"N/A","model":"infinix x6881","issue":"panel LCD","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"D"},{"code":"B3O6Z","date":"2026-04-12 01:10 PM","name":"N/A","phone":"N/A","model":"infinix x653c","issue":"backcover&power button&charging strips","adv":"500","tot":"1500","cost":"800","stat":"D"},{"code":"E1D3Q","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"tecno bg6","issue":"panel","adv":"0","tot":"3000","cost":"1800","stat":"D"},{"code":"F9G2L","date":"2026-03-28 07:30 PM","name":"N/A","phone":"03488690661","model":"huawei y9 2019","issue":"panel","adv":"0","tot":"3500","cost":"1900","stat":"D"},{"code":"R1K2C","date":"2026-04-11 03:27 PM","name":"murtaza","phone":"N/A","model":"samsung","issue":"back cover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"},{"code":"B9N9J","date":"2026-04-11 03:26 PM","name":"N/A","phone":"N/A","model":"oppo a16 blue","issue":"panel","adv":"2000","tot":"3000","cost":"1650","stat":"C"},{"code":"P2M0T","date":"2026-04-11 03:23 PM","name":"N/A","phone":"N/A","model":"oppo a16 black","issue":"panel","adv":"1000","tot":"3000","cost":"1650","stat":"C"},{"code":"H0U0T","date":"2026-04-11 02:40 PM","name":"N/A","phone":"N/A","model":"vivo","issue":"strip","adv":"0","tot":"800","cost":"350","stat":"C"},{"code":"D1W4U","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"vivo","issue":"battery & backcover","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"},{"code":"R1G9B","date":"2026-04-11 02:39 PM","name":"murtaza","phone":"N/A","model":"infinix","issue":"panel","adv":"PARTNER","tot":"PARTNER","cost":"0","stat":"C"}];
 
 // ════════════════════════════════════════════
 //  STATE
@@ -445,7 +440,19 @@ function loginSuccess(mode, record) {
 
 // ════════════════════════════════════════════
 //  RENDER — TABLE
+//  Records already sorted from server:
+//  P → D → C → R, newest first within each group
 // ════════════════════════════════════════════
+
+function groupLabel(stat) {
+    switch (stat) {
+        case 'P': return '🔧 Pending — Work in Progress';
+        case 'D': return '✅ Done — Ready for Pickup';
+        case 'C': return '📦 Collected — Device Taken';
+        case 'R': return '↩️ Returned — Without Repair';
+        default:  return stat;
+    }
+}
 
 function renderMasterTable(showCost) {
     const thead = document.getElementById('tableHead');
@@ -466,9 +473,19 @@ function renderMasterTable(showCost) {
         return;
     }
 
-    let html = '';
+    let html        = '';
+    let lastGroup   = null;
+
     records.forEach(function (r) {
         const isPartner = (r.adv === 'PARTNER');
+
+        // ── Group divider row ──────────────────
+        if (r.stat !== lastGroup) {
+            lastGroup = r.stat;
+            html += '<tr class="group-divider"><td colspan="' + cols + '">' +
+                    groupLabel(r.stat) + '</td></tr>';
+        }
+
         html += '<tr>';
         html += '<td><span class="code">'  + escHtml(r.code)    + '</span></td>';
         html += '<td><span class="date">'  + escHtml(r.date)    + '</span></td>';
@@ -484,6 +501,7 @@ function renderMasterTable(showCost) {
         html += '<td>' + statusHtml(r.stat) + '</td>';
         html += '</tr>';
     });
+
     tbody.innerHTML = html;
 }
 
